@@ -1,0 +1,8 @@
+import random
+length = 8
+passwd = list('1234567890abcdABCD!@#$%^&*()-=_?жзиклпшщя')
+random.shuffle(passwd)
+passwd = ''.join([random.choice
+(passwd) for x in range(length)])
+print (passwd)  # шкиd69#&
+choice_pasword = input('Сгенерировать простой пароль - напишите 1\nСгенерировать средний пароль - напишите 2\nСгенерировать сложний пароль - напишите 3')
