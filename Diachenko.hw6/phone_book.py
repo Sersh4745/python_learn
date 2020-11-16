@@ -14,21 +14,27 @@ data = None
 with open('C:/Users/Sersh/python_basic/python_basic/hw6/files/phone_book.txt') as f:
     data = f.read()
 
-with open('Diachenko.hw6/edited_phone_book.txt','w+') as file:
+with open('Diachenko.hw6/edited_phone_book.txt','w') as file:
     #cursor = re.sub(r'\D','', phone_number)
     cursor = data.lower()
     #cursor = cursor.lstrip()
-    cursor = cursor.replace(' ','')
+    cursor = cursor.replace(' ','') 
+    cursor = cursor.replace('(','')
+    cursor = cursor.replace(')','')
+    cursor = cursor.replace('+','')
+    cursor = cursor.replace('-','') 
     cursor = cursor.split()
-
 
     for i in cursor:
         if i[0] == 'м':
-            print(re.sub(r'\D','',i))
-        if i.split([0][-1]) == 'а':
-            print(i)
+            file.write('380'+ re.sub(r'\D','',i)[-9:]+ '\n') #вывел все номера которые совпадают с условиями
+
+        if re.sub(r'\d','',i)[-1] == 'а':
+            file.write('380'+ re.sub(r'\D','',i)[-9:]+ '\n')
 
 
-    #print(cursor)
-    #file.write(cursor)
-    #index
+       
+
+
+
+
