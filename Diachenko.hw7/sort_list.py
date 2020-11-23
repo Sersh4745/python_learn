@@ -4,8 +4,8 @@
     при условии, что все числа -1 остаются на своих местах.
 """
 
+
 def sort_ascending(x):
-    print('Было',x)
     lst_1 = sorted(i for i in x if i > 0)
     new_lst = []
 
@@ -14,8 +14,8 @@ def sort_ascending(x):
             new_lst.append(lst_1.pop(0))
         else:
             new_lst.append(-1)
-    print(new_lst)
     return(new_lst)
+
 
 t_1 = [-1, 150, 190, 170, -1, -1, 160, 180]
 assert sort_ascending(t_1) == [-1, 150, 160, 170, -1, -1, 180, 190]
