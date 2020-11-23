@@ -6,35 +6,24 @@
 
     Перед записью в файл привести номер к формату +380501234567.
 """
-from os import curdir
 import re
-from re import split
+
 
 data = None
-with open('C:/Users/Sersh/python_basic/python_basic/hw6/files/phone_book.txt') as f:
+with open('python_basic/hw6/files/phone_book.txt') as f:
     data = f.read()
 
-with open('Diachenko.hw6/edited_phone_book.txt','w') as file:
-    #cursor = re.sub(r'\D','', phone_number)
-    cursor = data.lower()
-    #cursor = cursor.lstrip()
-    cursor = cursor.replace(' ','') 
-    cursor = cursor.replace('(','')
-    cursor = cursor.replace(')','')
-    cursor = cursor.replace('+','')
-    cursor = cursor.replace('-','') 
+with open('Diachenko.hw6/edited_phone_book.txt', 'w') as file:
+    cursor = data.lower().replace(' ', '')
+    cursor = cursor.replace('(', '')
+    cursor = cursor.replace(')', '')
+    cursor = cursor.replace('+', '')
+    cursor = cursor.replace('-', '')
     cursor = cursor.split()
-
+    print(cursor)
     for i in cursor:
         if i[0] == 'м':
-            file.write('380'+ re.sub(r'\D','',i)[-9:]+ '\n') #вывел все номера которые совпадают с условиями
-
-        if re.sub(r'\d','',i)[-1] == 'а':
-            file.write('380'+ re.sub(r'\D','',i)[-9:]+ '\n')
-
-
-       
-
-
-
-
+            file.write('380' + re.sub(r'\D', '', i)[-9:] + '\n')
+            # вывел все номера которые совпадают с условиями
+        if re.sub(r'\d', '', i)[-1] == 'а':
+            file.write('380' + re.sub(r'\D', '', i)[-9:] + '\n')

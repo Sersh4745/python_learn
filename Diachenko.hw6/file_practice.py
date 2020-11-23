@@ -16,7 +16,7 @@
 
 # 3.
 # Прочтите файл 'files/text.txt'
-# В прочитанном тексте заменить все буквы 'i' на 'e', если 'i' большее количество,
+# В прочитанном тексте заменить все буквы 'i' на 'e', если 'i' большее кол
 # иначе - заменить все буквы 'e' на 'i'
 # Полученный текст дописать в файл 'file_practice.txt'
 
@@ -27,35 +27,30 @@
 # иначе - добавить в конец файла строку '\nbye'
 # Прочитать весь файл и вывести содержимое
 
-from os import write
-
-
-with open('Diachenko.hw6/file_practice.txt','w') as file:
-   print('Starting practice with files',file=file)
+with open('Diachenko.hw6/file_practice.txt', 'w') as file:
+    print('Starting practice with files', file=file)
 
 with open('Diachenko.hw6/file_practice.txt') as file:
-   words = file.read()
-   print('2.',words)
-   print('2.',words[:5])
+    words = file.read()
+    print('2.', words)
+    print('2.', words[:5])
 
-with open('Diachenko.hw6/file_practice.txt','r+') as file:
+with open('Diachenko.hw6/file_practice.txt', 'r+') as file:
     words = file.read()
     count_i = 0
     count_e = 0
-    
     for x in words:
         if x == 'i':
             count_i += 1
         if x == 'e':
-            count_e +=1
+            count_e += 1
     if count_i > count_e:
-        words = words.replace('i','e')   
+        words = words.replace('i', 'e')
     else:
-        words = words.replace('e','i')
-        
+        words = words.replace('e', 'i')
     file.write(words)
 
-with open('Diachenko.hw6/file_practice.txt','r+') as file:
+with open('Diachenko.hw6/file_practice.txt', 'r+') as file:
     words = file.read()
     file.write('*some pasted text*')
     cursor = file.tell()
@@ -64,10 +59,5 @@ with open('Diachenko.hw6/file_practice.txt','r+') as file:
     else:
         file.write('\nbye')
 
-with open('Diachenko.hw6/file_practice.txt','r') as file:
+with open('Diachenko.hw6/file_practice.txt', 'r') as file:
     print(file.read())
-
-
-   
-        
-    
