@@ -12,27 +12,33 @@
 while True:
     try:
         x = int(input('x = '))
-        y = int(input('y = '))
-        operator = input('Знак: ')
-
-        if operator == '+':
-            print(x + y)
-        elif operator == '-':
-            print(x - y)
-        elif operator == '*':
-            print(x * y)
-        elif operator == '/':
-            if y == 0:
-                print('На ноль дельнить нельзя!')
-            else:
-                print(x / y)
-        else:
-            print('Не верный знак , повторите операцию.')
-
-        c = str(input('Continue? (y/n): '))
-        if c == 'y':
-            continue
-        else:
-            break
     except ValueError:
-        print('Введите число')
+        print('Введите число: ')
+        continue
+    operator = input('Знак: ')
+    r = None
+    for _ in range(x):
+        try:
+            y = int(input('Введите число: '))
+        except ValueError:
+            print('Введите число: ')
+            continue
+        if r is None:
+            r = y
+        else:
+            if operator == '+':
+                r += y
+            elif operator == '-':
+                r -= y
+            elif operator == '*':
+                r *= y
+            elif operator == '/':
+                if y == 0:
+                    print('На ноль дельнить нельзя!')
+                    break
+                else:
+                    r /= y
+            print(r)
+
+    if input('Continue? (y/n) ') != 'y':
+        break
