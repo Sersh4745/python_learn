@@ -1,28 +1,39 @@
+"""
+    Магическое число.
+    При запуске программы генерируется число, которое нужно угадать.
+    Подсказки: больше или меньше.
+    Программа в бесконечном цикле.
+    После отгадывания появляется результат: само число, количество попыток,
+        а так же вопрос: "Continue? (y/n)"
+
+    * Для генерации случайного числа можно воспользоваться
+        функцией random.randint(-inf, +inf),
+        где -inf - +inf - диапазон возможных чисел
+"""
+import random
+
+
 print('Привет. Это программа "Магическое число"')
-import random 
-n = 0 #Кол попыток
+n = 0  # Кол попыток
 Name = input('Введите свое имя: ')
 random_number = random.randint(1, 100)
-
-print(Name,'программа загадала число от 1 до 100')
+print(Name, 'программа загадала число от 1 до 100')
 
 while True:
     try:
         a = int(input('Введите число от 1 до 100: '))
         n += 1
-    
-        if a < random_number:
-            print('Твое число меньше, попытайся еще')
-        elif a > random_number:
-            print('Твое число больше, попытайся еще')
-        else:
-            print('Ты угадал, это число', a,', ты использовал количество попыток -', n)
-
-            Finish = str(input('Continue? (y/n): '))
-            if  Finish == 'y':
-                continue
-            else:
-                break
-    except:
+    except ValueError:
         print('Введите число')
-      
+        continue
+
+    if a < random_number:
+        print('Твое число меньше, попытайся еще')
+    elif a > random_number:
+        print('Твое число больше, попытайся еще')
+    else:
+        print('Ты угадал, число', a, ', количество попыток -', n)
+        if input('\nContinue? (y/n) ') != 'y':
+            break
+        random_number = random.randint(1, 100)
+        n = 0
