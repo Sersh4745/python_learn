@@ -1,18 +1,18 @@
-phone_number = input('Введите номер телефона: ')
-dash_split = ''.join(phone_number.split('-')) #удаляем знак -
-space_split = ''.join(dash_split.split(' ')) #удаляем пробел
-brackets_split = ''.join(space_split.split('(')) #удаляем скобку (
-brackets_split2 = ''.join(brackets_split.split(')')) #удаляем скобку )
-plus_split = ''.join(brackets_split2.split('+')) #удаляем знак +
-good_number = plus_split
+"""
+    Написать программу, которая принимает номер телефона в любом формате:
+    +38 (050) 12-34-567 или 099 123 -45 67 или 80501234567 или 888 050 123 4567
+    а выводит в формате: 380501234567.
 
-while True :
+    Если цифр в номере недостаточно, чтобы описать номер в нужном формате -
+        попросить пользователя повторить ввод.
+"""
+import re
+phone_number = input('Введите номер телефона: ')
+good_number = re.sub(r'\D', '', phone_number)
+while True:
     if len(good_number) > 10:
-        print(str(38)+good_number[-10:])
+        print(str(380)+good_number[-9:])
         break
     else:
         print("Повторите попытку(нехватает символов")
-        phone_number = input('Введите номер телефона еще раз: ')
-        
-
-        
+        good_number = input('Введите номер телефона еще раз: ')
