@@ -23,18 +23,19 @@
 """
 # ОСНОВНОЕ ЗАДАНИЕ
 from random import choice, randint
-from string import digits,ascii_lowercase,ascii_uppercase,punctuation
 import string
+
 
 def main():
     try:
-        choice_pasword = int(input('Сгенерировать простой пароль - напишите 1\nСгенерировать средний пароль - напишите 2\nСгенерировать сложний пароль - напишите 3\n:  '))
-    except:
+        choice_pasword = int(input('Сгенерировать простой пароль - 1'
+                                   'Сгенерировать средний пароль - 2'
+                                   'Сгенерировать сложний пароль - 3:'))
+    except ValueError:
         print('Введите число от 1 до 3')
         return main()
-        
-    length = 8 #для 1 и 2 задния
-    length_2 = randint(8,16) #для 3
+    length = 8  # для 1 и 2 задния
+    length_2 = randint(8, 16)  # для 3
 
     small = string.ascii_lowercase
     big = string.ascii_uppercase
@@ -43,49 +44,45 @@ def main():
     all_symbols = spec+digits+big+small
     average = small+big+digits
     pas = ''
-
-    
     if choice_pasword > 4:
         print('Введите число от 1 до 3')
         return main()
-    if  choice_pasword == 1: 
+    if choice_pasword == 1:
         pas = pas + choice(small)
-        while len(pas)<length:  #добавляет знак пока длина пароля не станет как надо
-            pas+=choice(small)       
-    if  choice_pasword == 2:
+        while len(pas) < length:
+            pas += choice(small)
+    if choice_pasword == 2:
         pas = pas + choice(average)
-        while len(pas)<length:
-            pas+=choice(average)     
-    if  choice_pasword == 3 :
-        pas+=choice(digits)
-        pas+=choice(small)
-        pas+=choice(big)
-        pas+=choice(spec)
-        while len(pas)<length_2:
-            pas+=choice(all_symbols)
-    
-    print(pas)       
-        
-                
+        while len(pas) < length:
+            pas += choice(average)
+    if choice_pasword == 3:
+        pas += choice(digits)
+        pas += choice(small)
+        pas += choice(big)
+        pas += choice(spec)
+        while len(pas) < length_2:
+            pas += choice(all_symbols)
+    print(pas)
+
+
 main()
 
 # ДОПОЛНИТЕЛЬНОЕ
 
+
 def main1():
     words_for_password = input('Введите символы для будущего пароля: ')
-    words = words_for_password.replace(' ','')
-    length_3 = int(input('Введите количество символов для пароля - "Больше 8" : '))
+    words = words_for_password.replace(' ', '')
+    length_3 = int(input('Введите кол символов для пароля - "Больше 8" :'))
     pas = ''
-
-    
     if len(words) < 8 or length_3 < 8:
         print('Пароль не надежный.\nВведите больше 8 символов')
         return main1()
     else:
         pas = pas + choice(words)
-        while len(pas)<length_3:
-            pas+=choice(words) 
+        while len(pas) < length_3:
+            pas += choice(words)
     print(pas)
-        
-                
+
+
 main1()

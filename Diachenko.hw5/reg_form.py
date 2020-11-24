@@ -44,27 +44,23 @@
         Ваш пароль: **********
 
 """
-from random import choice, randint
-from string import digits,ascii_lowercase,ascii_uppercase,punctuation
+from string import punctuation
 import re
+
 
 def main():
     phone = input_phone()
     email = input_email()
     password = input_password()
-   
-    
     print('Поздравляем с успешной регистрацией!')
-    print('Ваш номер телефона:',phone) 
-    print('Ваш Email:',email)
-    print('Ваш пароль::',password)
+    print('Ваш номер телефона:', phone)
+    print('Ваш Email:', email)
+    print('Ваш пароль:', '*'*len(password))
 
-        
-###########
 
 def input_phone():
     phone_number = input('Введите номер телефона: ')
-    phone_number1 = re.sub(r'\D','', phone_number) # если пользователь введет, что то кроме цифр сработает повторите попытку. Не делал проверку на число! умесно делать ее?
+    phone_number1 = re.sub(r'\D', '', phone_number)
     good_number = phone_number1
 
     if len(good_number) > 10:
@@ -74,18 +70,17 @@ def input_phone():
         print("Повторите попытку (нехватает цифр)")
         return input_phone()
 
-#
-        
-def input_email():
-    email_input = input('Введите символы для будущего Email: ')
-    parol = email_input.replace(' ','')# удаляем все пробелы или можно проверку на isspace и просить ввести еще раз
-    
 
-    if len(parol) < 6:
+def input_email():
+    email_input = input('Введите Email: ')
+    p = email_input.replace(' ', '')  # удаляем все пробелы
+    if len(p) < 6:
         print('Email не верный.\nВведите больше 6 символов')
         return input_email()
-    if parol.find('@') > 0 and parol.find('.') > (parol.find('@')+1) and parol.find('.') < parol.rfind(parol[-1]): # находим индекс @ и точки. Если точка стоит дальше чем знак @ + 1 то домен полный(как вариант)
-        return parol
+    elif p.find('@') > 0 and p.find('.') > (p.find('@')+1)\
+            and p.find('.') < p.rfind(p[-1]):
+        # проверка полного домена . Наличие @ и точки в конце
+        return p
     else:
         print('Введите Email правильно. ')
         return input_email()
@@ -93,22 +88,20 @@ def input_email():
 
 def input_password():
     words_for_password = input('Введите символы для будущего пароля: ')
-    words = words_for_password.replace(' ','')# удаляем все пробелы или можно проверку на isspace и просить ввести еще раз
-    
-
+    words = words_for_password.replace(' ', '')
     try:
         if len(words) < 8:
             print('Пароль не надежный.\nВведите больше 8 символов')
             return input_password()
         else:
             for w in words:
-                if w.islower() :
+                if w.islower():
                     continue
-                if w.isupper() :
+                if w.isupper():
                     continue
-                if w.isdigit() :
+                if w.isdigit():
                     continue
-                if w in punctuation:  #***
+                if w in punctuation:
                     return words
             print('Пароль не надежный.')
             return input_password()
@@ -119,6 +112,5 @@ def input_password():
         print('Пароли не совпадают.')
         return input_password()
 
+
 main()
-
-
