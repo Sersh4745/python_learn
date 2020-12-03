@@ -11,19 +11,11 @@ import re
 
 data = None
 with open('python_basic/hw6/files/phone_book.txt') as f:
-    data = f.read()
+    data = f.readlines()
 
 with open('Diachenko.hw6/edited_phone_book.txt', 'w') as file:
-    cursor = data.lower().replace(' ', '')
-    cursor = cursor.replace('(', '')
-    cursor = cursor.replace(')', '')
-    cursor = cursor.replace('+', '')
-    cursor = cursor.replace('-', '')
-    cursor = cursor.split()
-    print(cursor)
+    cursor = data
     for i in cursor:
-        if i[0] == 'м':
-            file.write('380' + re.sub(r'\D', '', i)[-9:] + '\n')
-            # вывел все номера которые совпадают с условиями
-        if re.sub(r'\d', '', i)[-1] == 'а':
+        i = re.sub(r'\W', '', i).lower()
+        if i[0] == 'м' or re.sub(r'\d', '', i)[-1] == 'а':
             file.write('380' + re.sub(r'\D', '', i)[-9:] + '\n')
