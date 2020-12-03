@@ -17,12 +17,11 @@
 
 list_1 = input('Введите сисок №1: ').split()
 list_2 = input('Введите сисок №2: ').split()
-print(list_1)
 
 
 def funck_1():
     list_general = list_1 + list_2
-    print(sorted(list_general))
+    return sorted(set(list_general))
 
 
 funck_1()
@@ -32,7 +31,7 @@ def funck_2():
     list_3 = set(list_1)
     list_4 = set(list_2)
     list_diff = sorted((list_3 ^ list_4), reverse=True)
-    print(list_diff)
+    return list_diff
 
 
 funck_2()
@@ -42,7 +41,7 @@ def funck_3():
     list_5 = set(list_1)
     list_6 = set(list_2)
     list_diff_2 = sorted(list_6-list_5)
-    print(list_diff_2)
+    return list_diff_2
 
 
 funck_3()

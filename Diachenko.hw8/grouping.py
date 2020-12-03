@@ -35,8 +35,13 @@
 def main():
     for i in input_dictionary():
         i = i.split()
-        dict = {'key': i[0], 'val': ' '. join(i[1:])}
-        dict_2 = {'key':  ' '. join(i[1:]), 'val': i[0]}
+        dict = {i[0]: ' '. join(i[1:]).split()}
+        dict_2 = {}
+        for k, v in dict.items():
+            for x in v:
+                val = dict_2.get(x, [])
+                val.append(k)
+                dict_2[x] = val
         print(dict)
         print(dict_2)
 
